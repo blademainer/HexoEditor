@@ -134,7 +134,10 @@ npm install
 npm start
 ```
 This is [Detail Method](https://github.com/zhuzhuyule/HexoEditor/blob/master/doc/en/Building.md)
-
+docker:
+```bash
+docker run -d --name hexo-editor --restart always -p 443:443 blademainer/hexo-editor
+```
 # Debugging
 There's three ways to open the [Chromium Developer Tools](https://developer.chrome.com/devtools).
 
