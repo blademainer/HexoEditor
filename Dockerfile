@@ -5,7 +5,7 @@ WORKDIR /app
 ADD docker-entrypoint.sh /bin
 
 RUN  chmod +x /bin/docker-entrypoint.sh \
-  && mkdir /app && cd /app \
+  && mkdir -p /app && cd /app \
   && npm install -g npm \
   && apt-get install git \
   && npm config set prefix "/app/nodejs/npm_global" \
