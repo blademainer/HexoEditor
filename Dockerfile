@@ -9,7 +9,7 @@ RUN  chmod +x /bin/docker-entrypoint.sh \
   && npm install -g npm \
   && apt-get install git \
   && git clone https://github.com/zhuzhuyule/HexoEditor.git && cd /app/HexoEditor \
-  && npm install -g electron@1.8.1 \
+  && npm install -g electron --unsafe-perm=true --allow-root \
   && npm install
 # //If In China, China, China, you can set mirror to speed up !
 # npm config set registry "https://registry.npm.taobao.org/"
