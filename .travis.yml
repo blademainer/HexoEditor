@@ -1,26 +1,21 @@
 language: shell
 services:
 - docker
-
 stages:
-  - name: install
-    # require the branch name to be master (note for PRs this is the base branch name)
-    if: branch = master
-  - name: script
-    # require the branch name to be master (note for PRs this is the base branch name)
-    if: tag = true
-
+- name: install
+  if: branch = master
+- name: script
+  if: tag = true
 env:
-#  matrix:
   global:
-#  - DOCKER_TAG=$TRAVIS_BUILD_ID
   - DOCKER_TAG=${TRAVIS_COMMIT:0:7}
   - DEV_REPO=blademainer/hexo-editor:$DOCKER_TAG
   - RELEASE_REPO=blademainer/hexo-editor:$TRAVIS_TAG
+  - secure: B3M0LWihGqhzkUw33OOd3gQvy/8imfy5tktSq06x1GNxXW9HzpbaJ+6HoiBEvU+nlV3LT+DPVnNDZaw7rdAg1DmGSVttYbWzjK6hwUhwRuWgxS6I9VT+Zmo/CTNFawa7qBjfwV9PCmMfi2W5RDVbOh0kfDWvUoLxUrVHR+Bo+8pE4QUcAh8sbrmo5LPoyGTF5fthUnh7Req0MF4DkPAoNvKkSaiNBiGhTKZFsxjOoUINOP1Uk+QIk1xDEcfQ9qFfT3gLs43RjQ6oQYMpUotJTvSrCYHDg9R0QY5EKkT2ZmjiMomMyf2e6RjQoBQFaHwnfqCY+h3XRgF9P39f959AgcxYddvfmy13/lJL8EnJZ6GHhcaAjdbII9eaHshbk/BGjI3JekhspMqVFVAqPPswaoAhXQQJr8oUuPUrJfrM9M7f38HTyf0/tISY5szoNL6kuh9QLEV/r2UnXo1alOYy66PzeX8IwoUUfu3HxRYEr8WQYHd3xk6Iu570Zf+jZl1W3oZXUpBexLzMKVrxoQjrCH3QEcoaJGaZw0zocDdrUatOyXK7M9TOpzw/x7clT0dnQqFMPs1iusEcd0jaFnskLftGOIRloNeCtmFCH1b430HZnzSVA2JBF3KDq4Oo1sVJQWOsbyVtDdxX79PC5IBwAGCA6R4yzp+C7ixU0WFUHBE=
+  - secure: MaJ1rtEJOLxsa1ybS+medd+FhWtJwN4RgHSaCUyMGI5CibWcpTz2yNko/ChssZ+7bcLAe9Ly9+8CjkY2XjtyWJ4EQhhwvj03osx9ZPGKttpYX1a16b9El0k3Msp7hgaQ5YnLgLG+xHmw492fjxxzwjKv2TNfhwxJwYYtzuZJrvqfWjsgS5xGerwRDfYPi30aVSVi3ulnPK3x373g2Aw5la/O85Gzb5y0/s5vaSypO1K70+Zbol5SdnV4+RNyE3Y3MFdRzOZF/jnaOPsxNjF/UhemDBoAicfFdDJeV6PtlavzNcAUrAVsaeotF6nsJPHUmgSPFN5WO/evG7wob+LtUhaNS5xmGCGN7iUWTshMLUvHRrGxkfsHc0PFDreur+dqg1qHXNvJIvB1/VLuIm0zw+K/7BfpnEVQhdlMD1u8DvruYde5cquwuR3rK91lEGWiTzhtrNKiluTJUm+Zw/mPa6gYbjVkjqgQoi7tI+nbzDP1UU8tJMot14blE3XMZLs3EcIubs1MzVe29ApzMJsS3FstotAG9vsjfSf94+9yIa9TnStikjoIvDPKC9zfHZwNY+tlelnYaTtpYhZzGATziMxQsL82dymiynu9r9OOpIbX5cRQc+fqJ/G386WQTB8596wbTJc0IeVzqDGojVWXGIvw5Mu7VKNhLFAnTAADm4I=
 before_install:
 - env
 - docker login -u$DOCKER_USER -p$DOCKER_PASS
-
 install:
 - docker build . -t $DEV_REPO && docker push $DEV_REPO
 script:
