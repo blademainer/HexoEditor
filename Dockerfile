@@ -8,8 +8,6 @@ RUN  chmod +x /bin/docker-entrypoint.sh \
   && mkdir -p /app && cd /app \
   && npm install -g npm \
   && apt-get install git \
-  && npm config set prefix "/app/nodejs/npm_global" \
-  && npm config set cache "/app/nodejs/npm_cache" \
   && git clone https://github.com/zhuzhuyule/HexoEditor.git && cd /app/HexoEditor \
   && npm install -g electron@1.8.1 \
   && npm install
